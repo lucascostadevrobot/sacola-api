@@ -1,29 +1,28 @@
 package me.dio.ifood.sacola.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
+@JsonIgnoreProperties({"hibernanateLazyInitializer", "handler"}) //Evita e ignora erros no hibernate quando Lazyr
 @Entity
 public class Item {
     //Inicio dos atributos da classe Item
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Embedded
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "produto_id")
     private Produto produto;
     private int quantidade;
 
     //Relacionamento da entidade onde uma sacola podem ter vários itens
-    @ManyToOne
-    @JoinColumn(name = "sacola_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Sacola sacola;
 }

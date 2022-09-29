@@ -1,15 +1,17 @@
 package me.dio.ifood.sacola.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@Builder
 @Table(name = "tab_produto")
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernanateLazyInitializer", "handler"}) //Evita e ignora erros no hibernate quando Lazyr
 public class Produto {
 
     //Inicio dos atributos da classe Produto

@@ -1,6 +1,7 @@
 package me.dio.ifood.sacola.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import me.dio.ifood.sacola.enumeracao.FormaPagamento;
 import org.hibernate.Hibernate;
@@ -10,13 +11,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Table(name = "tab_sacola")
+@Builder
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernanateLazyInitializer", "handler"}) //Evita e ignora erros no hibernate quando Lazyr
 public class Sacola {
     //Inicio dos atribudos da classe de modelo Sacola
     @Id
