@@ -6,22 +6,23 @@ import lombok.RequiredArgsConstructor;
 import me.dio.ifood.sacola.domain.Item;
 import me.dio.ifood.sacola.domain.Sacola;
 import me.dio.ifood.sacola.resource.dto.ItemDto;
-import me.dio.ifood.sacola.service.SacolaService;
+import me.dio.ifood.sacola.service.implementa.SacolaService;
 import org.springframework.web.bind.annotation.*;
 
 
-@Data
+
 @RequiredArgsConstructor
 @AllArgsConstructor
 @RestController
 @RequestMapping("/ifood/sacolas")
+@Data
 public class SacolaController {
 
     private final SacolaService sacolaService;
 
     //Metodo para incluir item na sacola  e expõe rota controller
     @PostMapping
-    public Item  incluirItemNaSacola(@RequestBody  ItemDto itemDto){
+    public Item  incluirItemNaSacola(@RequestBody ItemDto itemDto){
         return sacolaService.incluirItemNaSacaola(itemDto);
     }
 
@@ -33,7 +34,8 @@ public class SacolaController {
 
     //Metodo para fechar sacola e expoe rota controller
     @PutMapping("/fecharSacola/{sacolaId}")
-    public Sacola fecharSacola(@PathVariable("sacolaId")Long sacolaId, @RequestParam("formaPagamento") int formaPagamento){
+    public Sacola fecharSacola(@PathVariable("sacolaId")Long sacolaId,
+                               @RequestParam("formaPagamento") int formaPagamento){
         return sacolaService.fecharSacola(sacolaId, formaPagamento);
     }
 }

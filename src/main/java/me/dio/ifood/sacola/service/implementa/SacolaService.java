@@ -1,4 +1,4 @@
-package me.dio.ifood.sacola.service;
+package me.dio.ifood.sacola.service.implementa;
 
 import me.dio.ifood.sacola.domain.Item;
 import me.dio.ifood.sacola.domain.Sacola;
