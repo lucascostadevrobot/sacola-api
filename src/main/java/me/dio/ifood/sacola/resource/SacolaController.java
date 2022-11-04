@@ -1,8 +1,6 @@
 package me.dio.ifood.sacola.resource;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import me.dio.ifood.sacola.domain.Item;
 import me.dio.ifood.sacola.domain.Sacola;
 import me.dio.ifood.sacola.resource.dto.ItemDto;
@@ -11,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-@RequiredArgsConstructor
-@AllArgsConstructor
+
 @RestController
 @RequestMapping("/ifood/sacolas")
 @Data
