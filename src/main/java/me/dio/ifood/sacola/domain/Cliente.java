@@ -30,7 +30,6 @@ public class Cliente {
 
 
 
-
     //Geração de repasse dos hashcodes e equals da anotação @Data
     @Override
     public boolean equals(Object o) {
