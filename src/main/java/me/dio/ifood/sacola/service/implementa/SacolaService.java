@@ -13,6 +13,6 @@ public interface SacolaService {
     * */
     Item incluirItemNaSacaola(ItemDto itemDto); //Metodo para incluir itens na sacola passando Classe ItemDto
     Sacola verSacola(Long id); //Metodo para visualizar sacola
-    Sacola fecharSacola(Long id, int formaPagamento); //Metodo para fechar a sacola
+    Sacola fecharSacola(Long id, int formaPagamento); //throws RuntimeException; //Metodo para fechar a sacola
 
 }

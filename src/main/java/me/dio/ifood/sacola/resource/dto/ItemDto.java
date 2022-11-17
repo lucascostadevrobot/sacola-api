@@ -1,6 +1,8 @@
 package me.dio.ifood.sacola.resource.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,14 +15,16 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class ItemDto {
-    /*
-    * A ideia das Classe DTO Data Trasnfer Object é um padrão bastante utilizado em java para transferencia
-    * de Dados entre diferentes componentes de um sistema.
-    * Seria muito verboso ter que passar cada atributo INDIVIDUALMENTE. Da mesma forma seria verboso ou
-    * até causaria erros passar uma ENTIDADE mais complexa.
-    *
-    * */
+    @JsonManagedReference
+    @JsonIgnore
     private Long produtoId;
     private int quantidade;
     private Long sacolaId;
 }
+/*
+ * A ideia das Classe DTO Data Trasnfer Object é um padrão bastante utilizado em java para transferencia
+ * de Dados entre diferentes componentes de um sistema.
+ * Seria muito verboso ter que passar cada atributo INDIVIDUALMENTE. Da mesma forma seria verboso ou
+ * até causaria erros passar uma ENTIDADE mais complexa.
+ *
+ * */

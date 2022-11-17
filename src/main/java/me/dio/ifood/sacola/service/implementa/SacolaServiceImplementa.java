@@ -9,8 +9,10 @@ import me.dio.ifood.sacola.repository.ItemRepository;
 import me.dio.ifood.sacola.repository.ProdutoRepository;
 import me.dio.ifood.sacola.repository.SacolaRepository;
 import me.dio.ifood.sacola.resource.dto.ItemDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -27,6 +29,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SacolaServiceImplementa implements SacolaService{
 
+    @Autowired
     private final SacolaRepository sacolaRepository;
     private final ProdutoRepository produtoRepository;
     private final ItemRepository itemRepository;
@@ -78,6 +81,16 @@ public class SacolaServiceImplementa implements SacolaService{
                    throw new RuntimeException("Não é possível adicionar produtos de restaurantes diferentes.Feche a sacola ou esvazie");
                }
             }
+            List<Double> valorDosItens = new ArrayList<>();
+            for (Item itemDaSacola: itemsDaSacola) {
+                double valorTotalItem =
+                        itemDaSacola.getProduto().getValorUnitario() * itemDaSacola.getQuantidade();
+                valorDosItens.add(valorTotalItem);
+            }
+
+            double valorTotalSacola = valorDosItens.stream()
+                    .mapToDouble(valorTotalDeCadaItem -> valorTotalDeCadaItem)
+                    .sum();
             sacolaRepository.save(sacola);
             return itemRepository.save(itemParaSerInserido);
         }
@@ -111,7 +124,7 @@ public class SacolaServiceImplementa implements SacolaService{
     * Por ultimo utilizamos sacolaRepository e salvamos a sacola no BD
     * */
     @Override
-    public Sacola fecharSacola(Long id, int numeroformaPagamento) {
+    public Sacola fecharSacola(Long id, int numeroformaPagamento) throws RuntimeException {
         Sacola sacola = verSacola(id);
         if(sacola.getItensSacola().isEmpty()){
           throw new RuntimeException("Inclua itens na sacola! Para poder fechar.");
@@ -123,4 +136,6 @@ public class SacolaServiceImplementa implements SacolaService{
         sacola.setFechada(true);
         return sacolaRepository.save(sacola); //retorna e Salva sacola no banco de dados
     }
+
+
 }

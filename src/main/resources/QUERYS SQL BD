@@ -15,3 +15,18 @@ INSERT INTO public.tab_produto(
 id, disponivel, nome, valor_unitario,restaurante_id)
 VALUES(?,?,?,?,?)
 -------------------------------------------------------
+
+
+------------Inserindo na tabela Sacola------------
+INSERT INTO public.tab_sacola(
+id, fechada,forma_pagamento,valor_total_sacola,cliente_id)
+VALUES(?,?,?,?,?)
+
+
+
+
+------------Inserindo na tabela Item Analisar antes de Inserir------------
+INSERT INTO public.item(
+id, quantidade,produto_id, sacola_id)
+VALUES(1, quantidade, produto_id, sacola_id)
+-------------------------------------------------------

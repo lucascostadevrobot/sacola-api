@@ -1,5 +1,6 @@
 package me.dio.ifood.sacola.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -18,10 +19,13 @@ import java.util.Objects;
 public class Restaurante {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
+
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Produto> cardapio;
     @Embedded
     private Endereco endereco;
@@ -31,20 +35,5 @@ public class Restaurante {
     
 
 
-
-
-    //Geração de repasse dos hashcodes e equals da anotação @Data
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Restaurante that = (Restaurante) o;
-        return id != null && Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
 
