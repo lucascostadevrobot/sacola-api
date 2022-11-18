@@ -30,7 +30,7 @@ public class SacolaController {
     }
 
     //Metodo para fechar sacola e expoe rota controller
-    @PatchMapping("/fecharSacola/{sacolaId}")
+    @PatchMapping(value = "/fecharSacola/{sacolaId}")
     public Sacola fecharSacola(@PathVariable("sacolaId")Long sacolaId,
                                @RequestParam("formaPagamento") int formaPagamento){
         return sacolaService.fecharSacola(sacolaId, formaPagamento);

@@ -10,10 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "tab_sacola")
-@Builder
-@Getter
-@Setter
-@ToString
+@Data
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -22,17 +19,17 @@ public class Sacola {
     //Inicio dos atribudos da classe de modelo Sacola
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false) //Um cliente pode ter várias sacolas
+    private double valorTotalSacola;
+
+
+    @ManyToOne //(fetch = FetchType.LAZY, optional = false) //Um cliente pode ter várias sacolas
     @JsonIgnore
     private Cliente cliente;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Item> itensSacola;
-    private double valorTotalSacola;
     @Enumerated
     private FormaPagamento formaPagamento;
     private boolean fechada = false;

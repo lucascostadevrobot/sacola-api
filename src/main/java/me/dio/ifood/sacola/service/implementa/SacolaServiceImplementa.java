@@ -1,5 +1,6 @@
 package me.dio.ifood.sacola.service.implementa;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import me.dio.ifood.sacola.domain.Item;
 import me.dio.ifood.sacola.domain.Restaurante;
@@ -9,6 +10,8 @@ import me.dio.ifood.sacola.repository.ItemRepository;
 import me.dio.ifood.sacola.repository.ProdutoRepository;
 import me.dio.ifood.sacola.repository.SacolaRepository;
 import me.dio.ifood.sacola.resource.dto.ItemDto;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Builder
 public class SacolaServiceImplementa implements SacolaService{
 
     @Autowired

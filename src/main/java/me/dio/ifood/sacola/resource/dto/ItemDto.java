@@ -1,22 +1,17 @@
 package me.dio.ifood.sacola.resource.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import javax.persistence.Embeddable;
 
 @Data
-@Builder
 @Embeddable //Essa classe não será uma tabela no Banco de Dados. Essa Entidade aparecerá dentro da tab_restaurante
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class ItemDto {
-    @JsonManagedReference
-    @JsonIgnore
+
     private Long produtoId;
     private int quantidade;
     private Long sacolaId;

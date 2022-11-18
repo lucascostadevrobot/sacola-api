@@ -7,7 +7,6 @@ import javax.persistence.Embeddable;
 
 
 @Data
-@Builder
 @Embeddable //Essa classe não será uma tabela no Banco de Dados. Essa Entidade aparecerá dentro da tab_restaurante
 @AllArgsConstructor
 @RequiredArgsConstructor
