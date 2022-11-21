@@ -22,6 +22,7 @@ public class Restaurante {
     private String nome;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Produto> cardapio;
     @Embedded
     private Endereco endereco;
