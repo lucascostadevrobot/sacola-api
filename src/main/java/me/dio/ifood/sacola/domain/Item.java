@@ -1,5 +1,6 @@
 package me.dio.ifood.sacola.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -28,5 +29,6 @@ public class Item {
 
     //Relacionamento da entidade onde uma sacola podem ter vários itens
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Sacola sacola;
 }
